@@ -1,0 +1,29 @@
+- name: Upload nginx template (public PKI info)
+  become: True
+  template:
+    src: nginx-dropin.conf.j2
+    dest: /etc/nginx/base.d/vault.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx
+
+- name: Upload nginx config template
+  become: True
+  template:
+    src: nginx-config-dropin.conf.j2
+    dest: /etc/nginx/conf.d/vault.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx
+
+- name: Upload nginx template (vault proxy)
+  become: True
+  template:
+    src: nginx-vault-proxy.conf.j2
+    dest: /etc/nginx/sites-enabled/vault.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart nginx

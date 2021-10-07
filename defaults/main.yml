@@ -1,0 +1,5 @@
+vault_proxy_domain: "vault.example.org"
+vault_proxy_port: 443
+vault_pki_proxy_domain: "pki.example.org"
+
+vault_server_ips: []
