@@ -2,7 +2,7 @@
 
 Tested on: Debian 11
 
-This role sets up NGINX (SOSETH/nginx) as a proxy to be able to keep a vault cluster private.
+This role sets up NGINX (SOSETH/nginx) + HAProxy (SOSETH/haproxy) as a proxy to be able to keep a vault cluster private.
 
 ## Note
 This role assumes that TLS certificates for `vault_proxy_domain` will be provisioned at:

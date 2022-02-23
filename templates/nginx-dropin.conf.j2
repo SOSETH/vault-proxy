@@ -1,5 +1,5 @@
 location ~ "/crl/pki/([a-zA-Z0-9_-]+)/pem$" {
-    proxy_pass https://vaultbackend/v1/pki/$1/crl/pem;
+    proxy_pass http://vaultbackend/v1/pki/$1/crl/pem;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
@@ -9,12 +9,10 @@ location ~ "/crl/pki/([a-zA-Z0-9_-]+)/pem$" {
 	proxy_cache_valid      200  12h;
 	proxy_cache_use_stale  error timeout invalid_header updating
 						   http_500 http_502 http_503 http_504;
-    proxy_ssl_verify              off;
-    proxy_ssl_protocols TLSv1.3;
 }
 
 location ~ "/crl/pki/([a-zA-Z0-9_-]+)$" {
-    proxy_pass https://vaultbackend/v1/pki/$1/crl;
+    proxy_pass http://vaultbackend/v1/pki/$1/crl;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
@@ -24,12 +22,10 @@ location ~ "/crl/pki/([a-zA-Z0-9_-]+)$" {
 	proxy_cache_valid      200  12h;
 	proxy_cache_use_stale  error timeout invalid_header updating
 						   http_500 http_502 http_503 http_504;
-    proxy_ssl_verify              off;
-    proxy_ssl_protocols TLSv1.3;
 }
 
 location ~ "/ca/pki/([a-zA-Z0-9_-]+)/pem$" {
-    proxy_pass https://vaultbackend/v1/pki/$1/ca/pem;
+    proxy_pass http://vaultbackend/v1/pki/$1/ca/pem;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
@@ -39,12 +35,10 @@ location ~ "/ca/pki/([a-zA-Z0-9_-]+)/pem$" {
 	proxy_cache_valid      200  12h;
 	proxy_cache_use_stale  error timeout invalid_header updating
 						   http_500 http_502 http_503 http_504;
-    proxy_ssl_verify              off;
-    proxy_ssl_protocols TLSv1.3;
 }
 
 location ~ "/ca/pki/([a-zA-Z0-9_-]+)$" {
-    proxy_pass https://vaultbackend/v1/pki/$1/ca;
+    proxy_pass http://vaultbackend/v1/pki/$1/ca;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
@@ -54,6 +48,4 @@ location ~ "/ca/pki/([a-zA-Z0-9_-]+)$" {
 	proxy_cache_valid      200  12h;
 	proxy_cache_use_stale  error timeout invalid_header updating
 						   http_500 http_502 http_503 http_504;
-    proxy_ssl_verify              off;
-    proxy_ssl_protocols TLSv1.3;
 }

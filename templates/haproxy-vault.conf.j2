@@ -1,0 +1,14 @@
+frontend vault-front
+	bind 127.0.0.1:8080
+	mode http
+	default_backend vault-back
+
+backend vault-back
+	mode http
+	option httpchk
+    http-check send meth GET uri /v1/sys/health
+    # 200 is healthy, active, unsealed
+    http-check expect status 200
+{% for item in vault_server_ips %}
+    server remote-{{ loop.index }} {{ item }}:8443 ssl verify none check check-ssl inter 5s fall 3 rise 3
+{% endfor %}

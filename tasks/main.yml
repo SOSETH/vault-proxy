@@ -27,3 +27,13 @@
     group: root
     mode: 0644
   notify: restart nginx
+
+- name: Upload haproxy template
+  become: True
+  template:
+    src: haproxy-vault.conf.j2
+    dest: /etc/haproxy/conf.d/20-vault-server.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart haproxy
